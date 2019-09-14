@@ -52,7 +52,7 @@ public class FetchNextSearchPageTask implements Runnable {
 
                 try {
                     db.beginTransaction();
-                    db.repoDao().inser(merged);
+                    db.repoDao().insert(merged);
                     db.repoDao().insertRepos(apiReponse.body.getItems());
                     db.setTransactionSuccessful();
                 } finally {

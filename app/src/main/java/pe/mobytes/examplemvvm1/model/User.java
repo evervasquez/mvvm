@@ -1,5 +1,6 @@
 package pe.mobytes.examplemvvm1.model;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 
 import com.google.gson.annotations.SerializedName;
@@ -7,6 +8,7 @@ import com.google.gson.annotations.SerializedName;
 @Entity(primaryKeys = "login")
 public class User {
 
+    @NonNull
     @SerializedName("login")
     public final String login;
 

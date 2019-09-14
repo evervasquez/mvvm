@@ -1,5 +1,6 @@
 package pe.mobytes.examplemvvm1.model;
 
+import androidx.annotation.NonNull;
 import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.Index;
@@ -13,6 +14,7 @@ public class Repo {
     public static final int UNKNOWN_ID = -1;
     public final int id;
 
+    @NonNull
     @SerializedName("name")
     public final String name;
 
@@ -23,23 +25,26 @@ public class Repo {
     public final String description;
 
     @SerializedName("stargazers_count")
-    public final int starts;
+    public final int stars;
 
+    @NonNull
     @SerializedName("owner")
     @Embedded(prefix = "owner_")
     public final Owner owner;
 
 
-    public Repo(int id, String name, String fullName, String description, int starts, Owner owner) {
+    public Repo(int id, String name, String fullName, String description, int stars, Owner owner) {
         this.id = id;
         this.name = name;
         this.fullName = fullName;
         this.description = description;
-        this.starts = starts;
+        this.stars = stars;
         this.owner = owner;
     }
 
     public static  class  Owner {
+
+        @NonNull
         @SerializedName("login")
         public final String login;
 

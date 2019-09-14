@@ -52,7 +52,7 @@ public abstract class RepoDao {
     @Query("SELECT * FROM RepoSearchResult WHERE `query` = :query")
     public abstract RepoSearchResult findSearchResult(String query);
 
-    @Query("SELECT * FROM Repo WHERE owner_login = :owner ORDER BY starts DESC")
+    @Query("SELECT * FROM Repo WHERE owner_login = :owner ORDER BY stars DESC")
     public abstract LiveData<List<Repo>> loadRepositories(String owner);
 
     public LiveData<List<Repo>> loadOrdered(List<Integer> repoIds){

@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import dagger.android.AndroidInjection;
 import dagger.android.HasActivityInjector;
 import dagger.android.support.AndroidSupportInjection;
+import dagger.android.support.HasSupportFragmentInjector;
 import pe.mobytes.examplemvvm1.GithubApp;
 
 public class AppInjector {
@@ -20,7 +21,8 @@ public class AppInjector {
     public AppInjector() {
     }
 
-    public static void init(GithubApp app){
+    public static void init(GithubApp app) {
+
         DaggerAppComponent.builder().application(app).build().inject(app);
 
         app.registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
@@ -61,17 +63,17 @@ public class AppInjector {
         });
     }
 
-    private static void handleActivity(Activity activity){
-        if(activity instanceof HasActivityInjector){
+    private static void handleActivity(Activity activity) {
+        if (activity instanceof HasSupportFragmentInjector) {
             AndroidInjection.inject(activity);
         }
 
-        if(activity instanceof FragmentActivity){
+        if (activity instanceof FragmentActivity) {
             ((FragmentActivity) activity).getSupportFragmentManager()
                     .registerFragmentLifecycleCallbacks(new FragmentManager.FragmentLifecycleCallbacks() {
                         @Override
                         public void onFragmentCreated(@NonNull FragmentManager fm, @NonNull Fragment f, @Nullable Bundle savedInstanceState) {
-                            if(f instanceof Injectable){
+                            if (f instanceof Injectable) {
                                 AndroidSupportInjection.inject(f);
                             }
                         }

@@ -4,7 +4,6 @@ package pe.mobytes.examplemvvm1.ui.repo;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingComponent;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
@@ -63,9 +62,9 @@ public class RepoFragment extends Fragment implements Injectable {
         super.onActivityCreated(savedInstanceState);
         repoViewModel = ViewModelProviders.of(this, viewModelFactory).get(RepoViewModel.class);
         Bundle args = getArguments();
-        if(args != null && args.containsKey(REPO_OWNER_KEY) && args.containsKey(REPO_NAME_KEY)){
+        if (args != null && args.containsKey(REPO_OWNER_KEY) && args.containsKey(REPO_NAME_KEY)) {
             repoViewModel.setId(args.getString(REPO_OWNER_KEY), args.getString(REPO_NAME_KEY));
-        }else{
+        } else {
             repoViewModel.setId(null, null);
         }
 
@@ -73,7 +72,7 @@ public class RepoFragment extends Fragment implements Injectable {
         repo.observe(this, new Observer<Resource<Repo>>() {
             @Override
             public void onChanged(Resource<Repo> repoResource) {
-                binding.get().setRepo(repoResource == null ? null: repoResource.data);
+                binding.get().setRepo(repoResource == null ? null : repoResource.data);
                 binding.get().setRepoResource(repoResource);
                 binding.get().executePendingBindings();
             }
@@ -91,18 +90,19 @@ public class RepoFragment extends Fragment implements Injectable {
         initContributorList(repoViewModel);
     }
 
-    private void initContributorList(RepoViewModel viewModel){
+    private void initContributorList(RepoViewModel viewModel) {
         viewModel.getContributors().observe(this, new Observer<Resource<List<Contributor>>>() {
             @Override
             public void onChanged(Resource<List<Contributor>> listResource) {
-                if(listResource != null && listResource.data != null){
+                if (listResource != null && listResource.data != null) {
                     adapter.get().replace(listResource.data);
-                }else {
+                } else {
                     adapter.get().replace(Collections.emptyList());
                 }
             }
         });
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -120,7 +120,7 @@ public class RepoFragment extends Fragment implements Injectable {
         return repoBinding.getRoot();
     }
 
-    public static RepoFragment create(String owner, String name){
+    public static RepoFragment create(String owner, String name) {
         RepoFragment repoFragment = new RepoFragment();
         Bundle args = new Bundle();
         args.putString(REPO_OWNER_KEY, owner);

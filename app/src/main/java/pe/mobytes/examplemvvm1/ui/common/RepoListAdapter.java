@@ -57,7 +57,7 @@ public class RepoListAdapter extends DataBoundListAdapter<Repo, RepoItemBinding>
     @Override
     protected boolean areContentsTheSame(Repo oldItem, Repo newItem) {
         return Objects.equals(oldItem.description, newItem.description) &&
-                Objects.equals(oldItem.starts, newItem.starts);
+                Objects.equals(oldItem.stars, newItem.stars);
     }
 
     public interface RepoClickCallback{

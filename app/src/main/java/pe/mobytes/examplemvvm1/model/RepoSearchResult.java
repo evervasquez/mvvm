@@ -1,5 +1,6 @@
 package pe.mobytes.examplemvvm1.model;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.TypeConverters;
 
@@ -11,7 +12,9 @@ import pe.mobytes.examplemvvm1.db.GithubTypeConverters;
 @TypeConverters(GithubTypeConverters.class)
 public class RepoSearchResult {
 
+    @NonNull
     public final String query;
+
     public final List<Integer> repoIds;
     public final int totalCount;
     public final Integer next;

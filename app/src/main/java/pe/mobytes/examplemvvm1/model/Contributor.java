@@ -1,5 +1,6 @@
 package pe.mobytes.examplemvvm1.model;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 
@@ -12,6 +13,7 @@ import com.google.gson.annotations.SerializedName;
                 childColumns = {"repoName", "repoOwner"}, onUpdate = ForeignKey.CASCADE))
 public class Contributor {
 
+    @NonNull
     @SerializedName("login")
     public final String login;
 
@@ -21,7 +23,10 @@ public class Contributor {
     @SerializedName("avatar_url")
     public final String avatarUrl;
 
+    @NonNull
     public String repoName;
+
+    @NonNull
     public String repoOwner;
 
     public Contributor(String login, int contributions, String avatarUrl) {
