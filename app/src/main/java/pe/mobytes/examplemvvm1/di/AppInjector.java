@@ -21,7 +21,7 @@ public class AppInjector {
     }
 
     public static void init(GithubApp app){
-
+        DaggerAppComponent.builder().application(app).build().inject(app);
 
         app.registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
             @Override
