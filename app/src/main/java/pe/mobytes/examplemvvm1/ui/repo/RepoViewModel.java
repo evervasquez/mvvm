@@ -4,6 +4,7 @@ import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
+import androidx.lifecycle.ViewModel;
 
 import java.util.List;
 import java.util.Objects;
@@ -16,7 +17,7 @@ import pe.mobytes.examplemvvm1.repository.RepoRepository;
 import pe.mobytes.examplemvvm1.repository.Resource;
 import pe.mobytes.examplemvvm1.utils.AbsentLiveData;
 
-public class RepoViewModel {
+public class RepoViewModel extends ViewModel {
     final MutableLiveData<RepoId> repoId;
     private final LiveData<Resource<Repo>> repo;
     private final LiveData<Resource<List<Contributor>>> contributors;
